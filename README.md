@@ -47,7 +47,7 @@ DB_USER=<your-database-username>
 DB_PASSWORD=<your-database-password>
 DB_HOST=<your-database-host>
 PORT=3000
-
+```
 # **Set Up the MySQL Database**
 
 1. Create a database in MySQL with the name you provided in `DB_NAME`.
@@ -61,12 +61,12 @@ Run the following command to start the application:
 
 ```bash
 npm start
-
+```
 # **Open Your Browser and Navigate To**
 
 ```arduino
 http://localhost:3000
-
+```
 # **Project Structure**
 
 ```php
@@ -93,7 +93,7 @@ fintech
 ├── server.js          # Application entry point
 ├── package.json       # Project dependencies
 └── README.md
-
+```
 # **Usage**
 
 1. Register a new account.
