@@ -100,5 +100,5 @@ fintech
 2. Log in with your credentials.
 3. Use the dashboard to:
    - Add a new transaction (income, spend, or bills).
-   - Edit or delete existing transactions.
+   - delete existing transactions.
    - View a summary of your total income and balance.
