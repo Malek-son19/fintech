@@ -37,7 +37,7 @@ Run
 Copy code
 npm install
 
-## **Set Up Environment Variables**
+# **Set Up Environment Variables**
 
 Create a `.env` file in the root of your project and include the following:
 
@@ -48,7 +48,7 @@ DB_PASSWORD=<your-database-password>
 DB_HOST=<your-database-host>
 PORT=3000
 
-## **Set Up the MySQL Database**
+# **Set Up the MySQL Database**
 
 1. Create a database in MySQL with the name you provided in `DB_NAME`.
 2. The application will sync the database schema automatically on startup.
@@ -62,12 +62,12 @@ Run the following command to start the application:
 ```bash
 npm start
 
-## **Open Your Browser and Navigate To**
+# **Open Your Browser and Navigate To**
 
 ```arduino
 http://localhost:3000
 
-## **Project Structure**
+# **Project Structure**
 
 ```php
 fintech
@@ -94,7 +94,7 @@ fintech
 ├── package.json       # Project dependencies
 └── README.md
 
-## **Usage**
+# **Usage**
 
 1. Register a new account.
 2. Log in with your credentials.
