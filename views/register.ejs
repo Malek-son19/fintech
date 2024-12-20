@@ -4,46 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- Link to your external CSS file -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f4f8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: #ffffff;
+      padding: 20px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #3066BE;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      border-color: #3066BE;
+      outline: none;
+    }
+
+    button {
+      background: #3066BE;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #244f9c;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-top: 15px;
+    }
+
+    p a {
+      color: #3066BE;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h1>Register</h1>
-  <form action="/register" method="POST">
+  <div class="container">
+    <h1>Register</h1>
     <form action="/register" method="POST">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required>
-        <br>
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Sign Up</button>
-      </form>
-      
-  </form>
-  <p>Already have an account? <a href="/login">Login here</a>.</p>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p>Already have an account? <a href="/login">Login here</a>.</p>
+  </div>
 </body>
 </html>
-<script>
-
-router.post('/register', async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-    });
-    res.status(201).json({ message: 'User registered successfully', user });
-  } catch (error) {
-    res.status(500).json({ message: 'Error registering user', error });
-  }
-});
-
-</script>

@@ -1,14 +1,29 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import db from './config/db.js';
+import router from './routes/router.js';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-import db from './config/db.js';
-import router from './routes/router.js';
-
 const app = express();
+
+// Middleware for parsing cookies
+app.use(cookieParser());
+
+// Session Middleware
+app.use(session({
+  secret: 'your_secret_key', // This is the secret used to sign the session ID cookie
+  resave: false, // Don't save session if unmodified
+  saveUninitialized: false, // Don't create session until something stored
+  cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 } // 24 hours
+}));
 
 // Middleware
 app.use(express.json());
@@ -27,13 +42,17 @@ app.use(router);
 // Sync database and start server
 db.sync()
   .then(() => {
-    console.log('Database connected!');
-    app.listen(process.env.PORT || 3000, () => {
-      console.log('Server is running on http://localhost:3000');
+    console.log('Database connected successfully!');
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
     });
   })
-  .catch(err => console.error('Error syncing database:', err));
-
+  .catch(err => {
+    console.error('Database connection failed. Please check your settings.');
+    console.error(err);
+    process.exit(1); // Exit the application on failure
+  });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
